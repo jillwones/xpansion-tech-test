@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ContinentDropdown from "./components/continentDropdown";
-import UrbanAreas from "./components/urbanAreas";
+import ContinentDropdown from "./components/continentDropdown/continentDropdown";
+import UrbanAreas from "./components/urbanAreas/urbanAreas";
 
 function App() {
   const [urbanAreas, setUrbanAreas] = useState([]);
