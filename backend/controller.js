@@ -1,5 +1,5 @@
 const fetchUrbanAreas = async (id) => {
-  const urbanAreasUrl = `https://api.teleport.org/api/continents/geonames%3A${id}/urban_areas/`;
+  const urbanAreasUrl = `https://api.teleport.org/api/continents/geonames%3A${id}/urban_areas`;
   const urbanAreasResponse = await fetch(urbanAreasUrl);
   const urbanAreasData = await urbanAreasResponse.json();
   return urbanAreasData["_links"]["ua:items"];
