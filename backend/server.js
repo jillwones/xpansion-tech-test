@@ -11,6 +11,8 @@ app.use(cors());
 
 app.get("/:continentId", getUrbanAreas);
 
-app.listen(process.env.PORT, () => {
+let server = app.listen(process.env.PORT, () => {
   console.log(`listening on port ${process.env.PORT}`);
 });
+
+module.exports = server;
