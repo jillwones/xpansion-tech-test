@@ -7,19 +7,22 @@ function App() {
   const [selectedContinent, setSelectedContinent] = useState(null);
   const [loading, setIsLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (selectedContinent) {
       setIsLoading(true);
+      setError(null);
       fetch(`http://localhost:4000/${selectedContinent}`)
         .then((response) => response.json())
         .then((data) => {
           setUrbanAreas(data);
-          setIsLoading(false);
           setSearched(true);
+          setIsLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+          setError(error);
+          setIsLoading(false);
         });
     }
   }, [selectedContinent]);
@@ -31,6 +34,7 @@ function App() {
         urbanAreas={urbanAreas}
         loading={loading}
         searched={searched}
+        error={error}
       />
     </div>
   );

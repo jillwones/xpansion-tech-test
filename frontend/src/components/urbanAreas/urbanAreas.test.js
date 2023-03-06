@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import UrbanAreas from "./UrbanAreas";
 
 describe("UrbanAreas", () => {
-  it("renders instruction message when searched is false", () => {
+  it("renders intro message when searched is false", () => {
     render(<UrbanAreas searched={false} />);
     const introMessage = screen.getByText(
       "Please select a continent from the drop-down menu to view the top 5 urban areas in that continent based on their Teleport Score."
@@ -29,14 +29,14 @@ describe("UrbanAreas", () => {
         summary: "A city in the UK",
       },
     ];
-    render(<UrbanAreas urbanAreas={mockUrbanAreas} searched={true}/>);
+    render(<UrbanAreas urbanAreas={mockUrbanAreas} searched={true} />);
     const table = screen.getByRole("table");
     expect(table).toBeInTheDocument();
 
     const tableHeadings = screen.getAllByRole("columnheader");
     expect(tableHeadings).toHaveLength(3);
-    expect(tableHeadings[0]).toHaveTextContent("Name");
-    expect(tableHeadings[1]).toHaveTextContent("Score");
+    expect(tableHeadings[0]).toHaveTextContent("Urban Area Name");
+    expect(tableHeadings[1]).toHaveTextContent("Teleport Score");
     expect(tableHeadings[2]).toHaveTextContent("Summary");
 
     const tableRows = screen.getAllByRole("row");
@@ -47,5 +47,11 @@ describe("UrbanAreas", () => {
     expect(tableRows[2]).toHaveTextContent("Brighton");
     expect(tableRows[2]).toHaveTextContent("90");
     expect(tableRows[2]).toHaveTextContent("A city in the UK");
+  });
+
+  it("renders error message when error prop isnt null", () => {
+    render(<UrbanAreas error={{ message: "Failed to fetch" }} />);
+    const errorMessage = screen.getByText("Failed to fetch");
+    expect(errorMessage).toBeInTheDocument();
   });
 });
