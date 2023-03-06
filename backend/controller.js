@@ -27,7 +27,7 @@ const getUrbanAreas = async (req, res) => {
     const urbanAreaDetailPromises = urbanAreas.map(fetchUrbanAreaDetails);
     const urbanAreaDetails = await Promise.all(urbanAreaDetailPromises);
     const sortedUrbanAreaDetails = sortUrbanAreaDetails(urbanAreaDetails);
-    res.status(200).json(sortedUrbanAreaDetails.slice(0, 5));
+    res.status(200).json(sortedUrbanAreaDetails.slice(0, 4));
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
